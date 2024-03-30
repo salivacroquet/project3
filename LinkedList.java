@@ -2,9 +2,15 @@
 public class LinkedList<T extends Comparable<T>> implements List<T> {
 
 
+    private Node <T> head;
+    private boolean isSorted;
+    private int size;
+
 
     public LinkedList() {
-
+        this.head = null;
+        this.isSorted = true;
+        this.size = 0;
 
     }
 

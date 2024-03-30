@@ -2,8 +2,14 @@
 
 public class ArrayList<T extends Comparable<T>> implements List<T> {
 
-    public ArrayList() {
 
+    private T[] array;
+    private boolean isSorted;
+    private int size;
+    public ArrayList() {
+        this.array = (T[]) new Comparable[size];
+        this.isSorted = true;
+        this.size = 0;
 
     }
 
