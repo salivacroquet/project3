@@ -8,7 +8,7 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
 
     //CONSTRUCTOR:
     //initializes the list to an empty list
-    public LinkedList() {
+    public LinkedList() { //SYLVIA
         this.head = null;
         this.isSorted = true;
         this.size = 0;
@@ -17,7 +17,7 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
 
     //ADD:
     //adds an element to the end of the list
-    public boolean add(T element){
+    public boolean add(T element){ //HAJAR
         //QUESTIONS: WHAT DOES THE RETURNED BOOLEAN REPRESENT?
         //DO WE RETURN TRUE IF AN ELEMENT IS ADDED?
         Node<T> currNode = head; //pointer
@@ -38,10 +38,10 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
 
     //ADD:
     //adds an element to a specific index in the list
-    public boolean add(int index, T element){
+    public boolean add(int index, T element){ //HAJAR
         Node<T> currNode = head;
         int currIndex = 0;
-        
+
         //Case 1: The element is added to the start of the list (index = 0)
         if(index==0){
             if(head == null){ //The list is empty
@@ -65,6 +65,7 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
                         currNode.setNext(new Node<T>(element));//make the node before it point to it
                         currNode = currNode.getNext();
                         currNode.setNext(nextNode); //make the new node point to the next node
+                        size++;
                         return true;
                     }
                     currNode = currNode.getNext();//go to the next node
@@ -79,7 +80,7 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
 
     //CLEAR:
     //empty the list
-    public void clear(){
+    public void clear(){ //HAJAR
         head = null;
         isSorted = true;
         size=0;
@@ -88,7 +89,7 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
 
     //GET:
     //get an element at a given index
-    public T get(int index){
+    public T get(int index){ //HAJAR
         int currIndex=0;
         Node<T> currNode = head;
         if (head != null) {
@@ -102,10 +103,10 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
         }
         return null;
     }
-    
+
     //indexOf:
     //get the index of a certain element
-    public int indexOf(T element){
+    public int indexOf(T element){ //HAJAR
         int currIndex=0;
         Node<T> currNode = head;
         if (head != null) {
@@ -116,24 +117,31 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
                 currIndex++;
             }
         }
-        
+
         return -1;
     }
 
-    public boolean isEmpty(){
-
+    //isEmpty:
+    //returns true if the list is empty
+    public boolean isEmpty(){ //HAJAR
+        if(size == 0)
+            return true;
+        else
+            return false;
     }
 
-    public int size(){
-
+    //Size:
+    //returns the size of the list
+    public int size(){ //HAJAR
+        return size;
     }
 
-    public void sort(){
+    public void sort(){ 
 
     }
 
     public T remove(int index){
-
+        return null;
     }
 
     public void removeDuplicates(){
@@ -141,6 +149,7 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
     }
 
     public void reverse(){
+        
 
     }
 
@@ -149,20 +158,19 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
     }
 
     public T getMin(){
-
+        return null;
     }
 
     public T getMax(){
-
+        return null;
     }
 
     public String toString(){
-
+        return "";
     }
 
     public boolean isSorted(){
-
+        return false;
     }
 
 }
-
