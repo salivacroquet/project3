@@ -4,7 +4,7 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
 
     private Node <T> head; //The front of the linked list
     private boolean isSorted; //boolean that is true if the list is sorted in ascending order
-    private int size; // length of the list
+    private int size; // number of items in the list
 
     //CONSTRUCTOR:
     //initializes the list to an empty list
