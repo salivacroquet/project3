@@ -32,6 +32,7 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
             currNode.setNext(new Node<T>(element));
         }
         size++; //increment size
+        isSorted =this.isSorted;
         return true;//INCOMPLETE
     }
 
@@ -40,6 +41,7 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
     public boolean add(int index, T element){
         Node<T> currNode = head;
         int currIndex = 0;
+        
         //Case 1: The element is added to the start of the list (index = 0)
         if(index==0){
             if(head == null){ //The list is empty
@@ -87,11 +89,35 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
     //GET:
     //get an element at a given index
     public T get(int index){
-        
+        int currIndex=0;
+        Node<T> currNode = head;
+        if (head != null) {
+            while(currNode !=null){
+                if(currIndex == index)
+                    return currNode.getData();
+                currNode = currNode.getNext();
+                currIndex++;
+
+            }
+        }
+        return null;
     }
-
+    
+    //indexOf:
+    //get the index of a certain element
     public int indexOf(T element){
-
+        int currIndex=0;
+        Node<T> currNode = head;
+        if (head != null) {
+            while(currNode !=null){
+                if(currNode.getData() == element)
+                    return currIndex;
+                currNode = currNode.getNext();
+                currIndex++;
+            }
+        }
+        
+        return -1;
     }
 
     public boolean isEmpty(){
