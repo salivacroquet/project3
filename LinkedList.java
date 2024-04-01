@@ -142,21 +142,28 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
 
     }
 
-    public T remove(int index){ //SYLVIA
-        //add case for index i not in length
+    public T remove(int index) { //SYLVIA
+        if (index < 0 || head == null || index >= size) {
+            return null;
+        }
         if (index == 0) { //case that removes the head (index = 0)
             T dataRemoved = head.getData();
             head = head.getNext();
-            size --;
+            size--;
             return dataRemoved;
         } else { //case when index != head (index > 0)
             Node<T> nextNode = head;
-            for (int i = 0; i < index; i++) {
+            for (int i = 0; i < index - 1; i++) { //moves through list to find the indicated index
                 nextNode = nextNode.getNext();
             }
-            T dataRemoved = nextNode.getNext().getData();
-            size--;
-            return dataRemoved;
+            if (nextNode.getNext() != null) { //makes sure that the next node isn't null
+                T dataRemoved = nextNode.getNext().getData();
+                nextNode.setNext(nextNode.getNext().getNext());
+                size--;
+                return dataRemoved;
+            } else {
+                return null;
+            }
         }
     }
 
