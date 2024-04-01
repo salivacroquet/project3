@@ -7,9 +7,9 @@ public class ArrayList<T extends Comparable<T>> implements List<T> {
     private boolean isSorted;
     private int size;
     public ArrayList() {//SYLVIA
+        this.size = 2;
         this.array = (T[]) new Comparable[size];
         this.isSorted = true;
-        this.size = 0;
 
     }
 
@@ -23,7 +23,7 @@ public class ArrayList<T extends Comparable<T>> implements List<T> {
     }
 
     public void clear() {
-        
+
     }
 
     public T get(int index) {
@@ -38,8 +38,8 @@ public class ArrayList<T extends Comparable<T>> implements List<T> {
         return false;
     }
 
-    public int size() {
-        return size;
+    public int size() {//HAJAR
+        return 0;
     }
 
     public void sort() {
@@ -63,19 +63,27 @@ public class ArrayList<T extends Comparable<T>> implements List<T> {
     }
 
     public T getMin() { //HAJAR
-        return null;
+        if(!isSorted)
+            this.sort();
+        return array[size-1];
     }
 
     public T getMax() { //HAJAR
-        return null;
+        if(!isSorted)
+            this.sort();
+        return array[0];
     }
 
     public String toString() {//HAJAR
-        return "";
+        String strArray="";
+        for(int i=0; i<size;i++){
+            strArray= array[i] +"\n";
+        }
+        return strArray;
     }
 
-    public boolean isSorted() {//HAJAR
-        return false;
+    public boolean isSorted() {
+        return isSorted;
     }
 
 }
