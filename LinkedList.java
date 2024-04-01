@@ -15,7 +15,7 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
 
     }
 
-    //ADD:
+    //ADD: INCOMPLETE
     //adds an element to the end of the list
     public boolean add(T element){ //HAJAR
         Node<T> currNode = head; //pointer
@@ -32,11 +32,10 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
             currNode.setNext(new Node<T>(element));
         }
         size++; //increment size
-        isSorted =this.isSorted;
         return true;//INCOMPLETE
     }
 
-    //ADD:
+    //ADD: INCOMPLETE
     //adds an element to a specific index in the list
     public boolean add(int index, T element){ //HAJAR
         Node<T> currNode = head;
@@ -87,7 +86,7 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
 
     }
 
-    //GET:
+    //GET: INCOMPLETE
     //get an element at a given index
     public T get(int index){ //HAJAR
         int currIndex=0;
@@ -104,7 +103,7 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
         return null;
     }
 
-    //indexOf:
+    //indexOf: INCOMPLETE
     //get the index of a certain element
     public int indexOf(T element){ //HAJAR
         int currIndex=0;
