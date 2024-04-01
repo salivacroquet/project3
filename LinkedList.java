@@ -142,8 +142,22 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
 
     }
 
-    public T remove(int index){
-        return null;
+    public T remove(int index){ //SYLVIA
+        //add case for index i not in length
+        if (index == 0) { //case that removes the head (index = 0)
+            T dataRemoved = head.getData();
+            head = head.getNext();
+            size --;
+            return dataRemoved;
+        } else { //case when index != head (index > 0)
+            Node<T> nextNode = head;
+            for (int i = 0; i < index; i++) {
+                nextNode = nextNode.getNext();
+            }
+            T dataRemoved = nextNode.getNext().getData();
+            size--;
+            return dataRemoved;
+        }
     }
 
     public void removeDuplicates(){
@@ -159,12 +173,34 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
 
     }
 
-    public T getMin(){
-        return null;
+    public T getMin(){ //SYLVIA
+        //add case for empty list
+        T min = head.getData();
+        Node<T> element = head.getNext();
+        int length = T.size(); //need a method for size?
+        for (int i = 0; i <= length; i++) {
+            T nextNode = element.getData();
+            if (nextNode.compareTo(min) < 0) {
+                min = nextNode;
+            }
+            element = element.getNext();
+        }
+        return min;
     }
 
-    public T getMax(){
-        return null;
+    public T getMax(){ //SYLVIA
+        //add case for empty list
+        T max = head.getData();
+        Node<T> element = head.getNext();
+        int length = T.size(); //need a method for size?
+        for (int i = 0; i <= length; i++) {
+            T nextNode = element.getData();
+            if (nextNode.compareTo(max) > 0) {
+                max = nextNode;
+            }
+            element = element.getNext();
+        }
+        return max;
     }
 
     public String toString(){
