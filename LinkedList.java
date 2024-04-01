@@ -210,15 +210,15 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
         return max;
     }
 
-    public String toString(){ //SYLVIA
-        StringBuilder strList = new StringBuilder();
-        Node<T> element = head;
-        for (int i = 0; i <= length; i++) {
-            strList.append(element.getData()).append(", ");
-            element = element.getNext();
+    public String toString () { //SYLVIA
+            StringBuilder strList = new StringBuilder();
+            Node<T> element = head;
+            while (element != null) {
+                strList.append(element.getData()).append(", ");
+                element = element.getNext();
+            }
+            return strList.toString();
         }
-        return strList.toString();
-    }
 
     public boolean isSorted(){
         return isSorted;
