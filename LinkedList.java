@@ -18,12 +18,12 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
     //ADD:
     //adds an element to the end of the list
     public boolean add(T element){ //HAJAR
-        //QUESTIONS: WHAT DOES THE RETURNED BOOLEAN REPRESENT?
-        //DO WE RETURN TRUE IF AN ELEMENT IS ADDED?
         Node<T> currNode = head; //pointer
-
+        
+        if(element == null) //if the element is null don't add it to the list
+            return false;
         //Case 1: head is null
-        if(head == null)
+        else if(head == null)
             head = new Node<T>(element);
         //Case 2: head is NOT null
         else{
@@ -136,6 +136,8 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
         return size;
     }
 
+    //SORT:
+    //Sorts the elements from largest to smallest
     public void sort(){//HAJAR
 
     }
@@ -174,3 +176,4 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
     }
 
 }
+
