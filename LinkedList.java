@@ -220,8 +220,21 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
             return strList.toString();
         }
 
-    public boolean isSorted(){
-        return isSorted;
+    public boolean isSorted () { //SYLVIA
+        if (head == null) {
+            return false;
+        }
+        Node<T> check = head;
+        while (check.getNext() != null) {
+            T element = check.getData();
+            T nextNode = check.getNext().getData();
+            if (element.compareTo(nextNode) > 0) {
+                return false;
+            } else if (element.compareTo(nextNode) < 0) {
+                check = check.getNext();
+            }
+        }
+        return true;
     }
 
 }
