@@ -178,7 +178,20 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
     }
 
     public void removeDuplicates(){
-
+        //empty or null??
+        Node<T> element = head;
+        while (element != null) {
+            Node <T> check = element;
+            while (check.getNext() != null) { //compares element to all other elements in list
+                if (element.getData().equals(check.getNext().getData())) { //if they equal each other, remove
+                    check.setNext(check.getNext()); //another .getNext?????
+                    size--;
+                } else {
+                    check = check.getNext();
+                }
+            }
+            element = element = element.getNext();
+        }
     }
 
     public void reverse(){
