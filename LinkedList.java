@@ -1,4 +1,5 @@
 //Created by Sylvia Croatt, croat038 and Hajar Ahmed, ahme0635
+
 public class LinkedList<T extends Comparable<T>> implements List<T> {
 
 
@@ -14,7 +15,7 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
         this.size = 0;
 
     }
-    
+
     //ADD:
     //adds an element to the end of the list
     public boolean add(T element){ //HAJAR
@@ -31,10 +32,10 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
         else{
             while(currNode.getNext()!=null) //while the next node isn't null
                 currNode = currNode.getNext();//go to the next node
-                if(oldData.compareTo(currNode.getData()) < 0) //check if sorted
-                    isSorted=false;
-                oldData= currNode.getData(); //save the data from the node to compare to the next one
-                currNode.setNext(new Node<T>(element));
+            if(oldData.compareTo(currNode.getData()) < 0) //check if sorted
+                isSorted=false;
+            oldData= currNode.getData(); //save the data from the node to compare to the next one
+            currNode.setNext(new Node<T>(element));
         }
         size++; //increment size
         return true;//INCOMPLETE
@@ -194,8 +195,7 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
         //add case for empty list
         T min = head.getData();
         Node<T> element = head.getNext();
-        int length = T.size(); //need a method for size?
-        for (int i = 0; i <= length; i++) {
+        for (int i = 0; i <= size; i++) {
             T nextNode = element.getData();
             if (nextNode.compareTo(min) < 0) {
                 min = nextNode;
@@ -209,8 +209,7 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
         //add case for empty list
         T max = head.getData();
         Node<T> element = head.getNext();
-        int length = T.size(); //need a method for size?
-        for (int i = 0; i <= length; i++) {
+        for (int i = 0; i <= size; i++) {
             T nextNode = element.getData();
             if (nextNode.compareTo(max) > 0) {
                 max = nextNode;
@@ -221,14 +220,14 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
     }
 
     public String toString () { //SYLVIA
-            StringBuilder strList = new StringBuilder();
-            Node<T> element = head;
-            while (element != null) {
-                strList.append(element.getData()).append(", ");
-                element = element.getNext();
-            }
-            return strList.toString();
+        StringBuilder strList = new StringBuilder();
+        Node<T> element = head;
+        while (element != null) {
+            strList.append(element.getData()).append(", ");
+            element = element.getNext();
         }
+        return strList.toString();
+    }
 
     public boolean isSorted () { //SYLVIA
         if (head == null) {
@@ -248,5 +247,4 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
     }
 
 }
-
 
