@@ -7,18 +7,18 @@ public class ArrayList<T extends Comparable<T>> implements List<T> {
     private boolean isSorted;
     private int size;
     public ArrayList() {//SYLVIA
-        this.size = 2;
-        this.array = (T[]) new Comparable[size];
+        this.size = 0;
+        this.array = (T[]) new Comparable[2];
         this.isSorted = true;
 
     }
 ///most of sylvia methods need editing
 
-   //ADD
+    //ADD
     //adds a given element to the end of the array
     public boolean add(T element) { //SYLVIA
-       array[size++] = element;
-       isSorted = false; //no longer sorted
+        array[size++] = element;
+        isSorted = false; //no longer sorted
         return true;
     }
     //ADD
@@ -37,13 +37,11 @@ public class ArrayList<T extends Comparable<T>> implements List<T> {
 
     }
 
-    
+
     //CLEAR
     //clears the array
     public void clear() { //SYLVIA
-        for (int i = 0; i < size; i++) { //make each element null
-           array[i] = null;
-        }
+        this.array = (T[]) new Comparable[2];
         size = 0; //adjust size
         isSorted = true; //is sorted because empty
     }
@@ -68,12 +66,22 @@ public class ArrayList<T extends Comparable<T>> implements List<T> {
     //isEmpty
     //checks if the array is empty
     public boolean isEmpty() { //SYLVIA
-        if (size == 0) 
-            return size == 0;
+        if (size == 0)
+            return true;
+        else{
+            return false;
+        }
     }
 
     public int size() {//HAJAR
-        return 0;
+        int numItems=0;
+        for(int i=0; i<array.length-1; i++){
+            if(array[i] != null){
+                numItems++;
+            }
+        }
+        size = numItems;
+        return size;
     }
 
     public void sort() { //SYLVIA
@@ -81,31 +89,50 @@ public class ArrayList<T extends Comparable<T>> implements List<T> {
     }
 
     public T remove(int index) { //HAJAR
+        //WEDNESDAY
         return null;
     }
 
     public void removeDuplicates() { //HAJAR
-
+    //THURSDAY
     }
 
     public void reverse() { //HAJAR
-
+        int distance = size-1;
+        for(int i=0;i<size-1;i++){
+            array[distance-i] = array[i];
+            distance--;
+        }
     }
 
     public void exclusiveOr(List<T> otherList) { //HAJAR
-
+    //THURSDAY
     }
 
     public T getMin() { //HAJAR
-        if(!isSorted)
-            this.sort();
-        return array[size-1];
+        if(size==0)
+            return null;
+        else{
+            T min=array[0];
+            for(int i=0;i<size-1;i++){
+                if(min.compareTo(array[i]) > 0)
+                    min = array[i];
+            }
+            return min;
+        }
     }
 
     public T getMax() { //HAJAR
-        if(!isSorted)
-            this.sort();
-        return array[0];
+        if(size==0)
+            return null;
+        else{
+            T max=array[0];
+            for(int i=0;i<size-1;i++){
+                if(max.compareTo(array[i]) < 0)
+                    max = array[i];
+            }
+            return max;
+        }
     }
 
     public String toString() {//HAJAR
