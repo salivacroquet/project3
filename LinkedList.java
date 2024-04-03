@@ -23,22 +23,25 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
         T oldData= currNode.getData();
         //CHECK IF SORTED
 
-        if(element == null) //if the element is null don't add it to the list
+        //Return false and do not add to list if element is null
+        if(element == null)
             return false;
+        else{ //Add it to the list
             //Case 1: head is null
-        else if(head == null)
-            head = new Node<T>(element);
+            if(head == null)
+                head = new Node<T>(element);
             //Case 2: head is NOT null
-        else{
-            while(currNode.getNext()!=null) //while the next node isn't null
-                currNode = currNode.getNext();//go to the next node
-            if(oldData.compareTo(currNode.getData()) < 0) //check if sorted
-                isSorted=false;
-            oldData= currNode.getData(); //save the data from the node to compare to the next one
-            currNode.setNext(new Node<T>(element));
+            else{
+                while(currNode.getNext()!=null) //while the next node isn't null
+                    currNode = currNode.getNext();//go to the next node
+                if(oldData.compareTo(currNode.getData()) < 0) //check if sorted
+                    isSorted=false;
+                oldData= currNode.getData(); //save the data from the node to compare to the next one
+                currNode.setNext(new Node<T>(element));
+            }
+            size++; //increment size
+            return true;//INCOMPLETE
         }
-        size++; //increment size
-        return true;//INCOMPLETE
     }
 
     //ADD:
@@ -48,25 +51,23 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
         int currIndex = 0;
         T oldData = currNode.getData();
 
-        //Case 1: The element is added to the start of the list (index = 0)
-        if(index==0){
-            if(head == null){ //The list is empty
+        if(element == null || index<0 || index>=size){ 
+            //if the element is null or the index is out of bounds do not add it ot the list
+            return false;
+        }else{ //add it to the list
+            //Case 1: head is null
+            if(head == null) //The list is empty 
                 head = new Node<T>(element);
-            }else{ //The list is not empty
+            else if(index==0){ //head is not null and index=0
                 Node<T> newHead = new Node<T>(element);
                 if(oldData.compareTo(newHead.getData()) > 0)
                     isSorted = false;
                 newHead.setNext(head);
                 head = newHead;
-            }
-            size++;
-            return true;
-
-        }else if(head != null && index != 0){//Case 2: element is added to the middle or end
-            if(index == size+1){ // if the index is the end of the list
-                this.add(element); //use the add method to add it to the end
-                return true;
-            }else{//if the index is in the middle of the list
+            }else if(index == size) { //if the index is the end of the list
+                this.add(element);
+                size--;
+            }else{//if the index is in the middle
                 while(currNode.getNext()!=null){
                     if(currIndex == index-1){ //if a Node points to the desired index
                         Node<T> nextNode= currNode.getNext();
@@ -76,17 +77,15 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
                         currNode.setNext(new Node<T>(element));//make the node before it point to it
                         currNode = currNode.getNext();
                         currNode.setNext(nextNode); //make the new node point to the next node
-                        size++;
-                        return true;
                     }
                     currNode = currNode.getNext();//go to the next node
                     currIndex++;
                 }
             }
+            
+            size++;
+            return true;
         }
-
-        //Otherwise it is an invalid Index
-        return false;
     }
 
     //CLEAR:
