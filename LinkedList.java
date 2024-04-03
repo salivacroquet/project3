@@ -149,7 +149,7 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
     //SORT:
     //Sorts the elements from largest to smallest
     public void sort(){//HAJAR
-
+        
     }
 
     public T remove(int index) { //SYLVIA
@@ -204,31 +204,37 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
     }
 
     public T getMin(){ //SYLVIA
-        //add case for empty list
-        T min = head.getData();
-        Node<T> element = head.getNext();
-        for (int i = 0; i <= size; i++) {
-            T nextNode = element.getData();
-            if (nextNode.compareTo(min) < 0) {
-                min = nextNode;
+        if(size==0){
+            return null;
+        }else{
+            T min = head.getData();
+            Node<T> element = head;
+            while(element.getNext() != null){
+                element = element.getNext();
+                T nextNode = element.getData();
+                if (nextNode.compareTo(min) < 0) {
+                    min = nextNode;
+                }
             }
-            element = element.getNext();
+            return min;
         }
-        return min;
     }
 
     public T getMax(){ //SYLVIA
-        //add case for empty list
-        T max = head.getData();
-        Node<T> element = head.getNext();
-        for (int i = 0; i <= size; i++) {
-            T nextNode = element.getData();
-            if (nextNode.compareTo(max) > 0) {
-                max = nextNode;
+        if(size == 0){
+            return null;
+        }else{
+            T max = head.getData();
+            Node<T> element = head;
+            while(element.getNext() != null){
+                element = element.getNext();
+                T nextNode = element.getData();
+                if (nextNode.compareTo(max) > 0) {
+                    max = nextNode;
+                }
             }
-            element = element.getNext();
+            return max;
         }
-        return max;
     }
 
     public String toString () { //SYLVIA
@@ -242,6 +248,8 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
     }
 
     public boolean isSorted () { //SYLVIA
+        //I THINK THIS ONLY RETURNS isSorted
+        //-HAJAR
         if (head == null) {
             return false;
         }
