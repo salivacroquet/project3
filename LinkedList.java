@@ -1,7 +1,7 @@
 //Created by Sylvia Croatt, croat038 and Hajar Ahmed, ahme0635
 
 public class LinkedList<T extends Comparable<T>> implements List<T> {
-    //ONLY NEED TO DEBUG TO MAKE SURE isSortedTest Passes and exclusiveOrTest
+    //ONLY NEED TO DEBUG TO MAKE SURE exclusiveOrTest Passes
 
     private Node <T> head; //The front of the linked list
     private boolean isSorted; //boolean that is true if the list is sorted in ascending order
@@ -162,7 +162,6 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
                 currNode = currNode.getNext();
             }
         }
-
         isSorted = true;
     }
 
@@ -170,26 +169,24 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
         if (index < 0 || head == null || index >= size) {
             return null;
         }else{//Remove element
+            T dataRemoved=null;
             if (index == 0) { //case that removes the head (index = 0)
-                T dataRemoved = head.getData();
+                dataRemoved = head.getData();
                 head = head.getNext();
-                size--;
-                return dataRemoved;
             } else { //case when index != head (index > 0)
                 Node<T> nextNode = head;
                 for (int i = 0; i < index - 1; i++) { //moves through list to find the indicated index
                     nextNode = nextNode.getNext();
                 }
                 if (nextNode.getNext() != null) { //makes sure that the next node isn't null
-                    T dataRemoved = nextNode.getNext().getData();
+                    dataRemoved = nextNode.getNext().getData();
                     nextNode.setNext(nextNode.getNext().getNext());
-                    size--;
-                    return dataRemoved;
                 }
             }
+            size--;
             checkSort();
+            return dataRemoved;
         }
-        return null;
     }
 
     //removeDuplicates
@@ -211,8 +208,6 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
         checkSort();
     }
 
-    //Check Sort
-    //A helper function that checks if the list is sorted
     public void checkSort(){//SYLVIA
         isSorted=true;
         if(size>1){
@@ -220,14 +215,12 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
             while (check.getNext() != null) {
                 T element = check.getData();
                 T nextData = check.getNext().getData();
-                if (element.compareTo(nextData) < 0) {
+                if (element.compareTo(nextData) > 0)
                     isSorted=false;
-                }
                 check = check.getNext();
             }
         }
     }
-    
     //REVERSE
     //reverses the order of the linked list
     public void reverse(){//HAJAR
@@ -242,6 +235,7 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
             pointer = next;
         }
         head = previous;
+        checkSort();
 
     }
 
