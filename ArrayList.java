@@ -17,11 +17,18 @@ public class ArrayList<T extends Comparable<T>> implements List<T> {
     //ADD
     //adds a given element to the end of the array
     public boolean add(T element) { //SYLVIA
-        array[size++] = element;
-        //CHECK IF SORTED
-        isSorted = false; //no longer sorted
-        return true;
+        if(element == null)
+            return false;
+        else{
+            if(size == array.length)
+                resize();
+
+            array[size++] = element;
+            checkSort(); //check if sorted
+            return true;
+        }
     }
+    
     //ADD
     //adds given element to a specified index in array
     public boolean add(int index, T element) { //SYLVIA
@@ -108,10 +115,13 @@ public class ArrayList<T extends Comparable<T>> implements List<T> {
     }
 
     public void reverse() { //HAJAR
-        int distance = size-1;
-        for(int i=0;i<size-1;i++){
-            array[distance-i] = array[i];
-            distance--;
+        if(size > 1){
+            T temp = null;
+            for(int i=0; i<size/2;i++){
+                temp = array[i];
+                array[i] = array[size-i-1];
+                array[size-i-1] = temp;
+            }
         }
     }
 
@@ -143,7 +153,7 @@ public class ArrayList<T extends Comparable<T>> implements List<T> {
             return null;
         else{
             T min=array[0];
-            for(int i=0;i<size-1;i++){
+            for(int i=0;i<size;i++){
                 if(min.compareTo(array[i]) > 0)
                     min = array[i];
             }
@@ -156,7 +166,7 @@ public class ArrayList<T extends Comparable<T>> implements List<T> {
             return null;
         else{
             T max=array[0];
-            for(int i=0;i<size-1;i++){
+            for(int i=0;i<size;i++){
                 if(max.compareTo(array[i]) < 0)
                     max = array[i];
             }
