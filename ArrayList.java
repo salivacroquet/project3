@@ -176,4 +176,9 @@ public class ArrayList<T extends Comparable<T>> implements List<T> {
         return isSorted;
     }
 
+    //RESIZE
+    public void resize(){ //HAJAR
+
+    }
+
 }
