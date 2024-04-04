@@ -98,13 +98,13 @@ public class ArrayList<T extends Comparable<T>> implements List<T> {
         }
     }
 
-    public T remove(int index) { //HAJAR
-        //WEDNESDAY
+    public T remove(int index) { //SYLVIA
+       
         return null;
     }
 
-    public void removeDuplicates() { //HAJAR
-    //THURSDAY
+    public void removeDuplicates() { //SYLVIA
+   
     }
 
     public void reverse() { //HAJAR
@@ -115,9 +115,28 @@ public class ArrayList<T extends Comparable<T>> implements List<T> {
         }
     }
 
-    public void exclusiveOr(List<T> otherList) { //HAJAR
-    //THURSDAY
-    }
+    public void exclusiveOr(List<T> otherList) { //SYLVIA
+        if (size == 1) {
+            this.clear();
+        }
+        if (size > 1) {
+            ArrayList<T> other = (ArrayList<T>) otherList;
+            this.sort();
+            this.removeDuplicates();
+            other.sort();
+            other.removeDuplicates();
+            for (int i = 0; i < size; i++) {
+                if (other.indexOf(array[i]) == -1) {
+                    this.add(other.get(i));
+                    }
+                if (other.indexOf(array[i]) != -1) {
+                    this.remove(indexOf(other.get(i)));
+                }
+
+                }
+            sort();
+            }
+        }
 
     public T getMin() { //HAJAR
         if(size==0)
