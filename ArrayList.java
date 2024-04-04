@@ -184,5 +184,17 @@ public class ArrayList<T extends Comparable<T>> implements List<T> {
             bigArray[i] = array[i];
         this.array = bigArray;
     }
+    
+    //CheckSort
+    //checks if the array is sorted
+    public void checkSort(){
+        isSorted = true;
+        if(size>1){
+            for(int i=0; i<size-1;i++){
+                if(array[i].compareTo(array[i+1]) >0)
+                    isSorted=false;
+            }
+        }
+    }
 
 }
