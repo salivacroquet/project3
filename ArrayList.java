@@ -110,8 +110,15 @@ public class ArrayList<T extends Comparable<T>> implements List<T> {
         return null;
     }
 
-    public void removeDuplicates() { //SYLVIA
-   
+    public void removeDuplicates() { //HAJAR
+        for(int i=0;i<size-1;i++){
+            for(int j=0;j<size-1;j++){
+                if(i != j && array[i]==array[j]){
+                    remove(i);
+                }
+            }
+        }
+
     }
 
     public void reverse() { //HAJAR
