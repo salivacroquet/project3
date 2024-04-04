@@ -1,0 +1,40 @@
+Sylvia Croatt croat038
+Hajar Ahmed ahme0635
+
+
+Analysis
+
+METHODS:
+
+boolean add(T element)
+  - LinkedList: 
+    - Runtime: O(...)
+  - ArrayList:
+    - Runtime: O(...)
+
+  -Explanation:
+
+T getMax()
+- LinkedList: 
+    - Runtime: O(...)
+  - ArrayList:
+    - Runtime: O(...)
+
+  -Explanation:
+
+
+removeDuplicates()
+- LinkedList: 
+    - Runtime: O(...)
+  - ArrayList:
+    - Runtime: O(...)
+
+  -Explanation:
+
+reverse()
+- LinkedList: 
+    - Runtime: O(...)
+  - ArrayList:
+    - Runtime: O(...)
+
+  -Explanation:
