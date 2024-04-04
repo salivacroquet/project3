@@ -203,7 +203,7 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
 
     //removeDuplicates
     //removes and duplicate elements in the list
-    public void removeDuplicates() {
+    public void removeDuplicates() { //SYLVIA
         //CHECK IF SORTED
         //empty or null??
         Node<T> element = head;
