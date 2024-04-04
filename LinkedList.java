@@ -189,7 +189,7 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
             Node<T> check = element;
             while (check.getNext() != null) { //compares element to all other elements in list
                 if (element.getData().equals(check.getNext().getData())) { //if they equal each other, remove
-                    check.setNext(check.getNext()); //another .getNext?????
+                    check.setNext(check.getNext().getNext()); 
                     size--;
                 } else {
                     check = check.getNext();
