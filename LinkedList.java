@@ -204,7 +204,6 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
     //removeDuplicates
     //removes and duplicate elements in the list
     public void removeDuplicates() {
-        //empty or null??
         Node<T> element = head;
         while (element != null) {
             Node<T> check = element;
@@ -220,11 +219,24 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
         }
     }
 
+    //REVERSE
+    //reverses the order of the linked list
     public void reverse(){//HAJAR
+        Node<T> previous = null;
+        Node<T> pointer = head;
+        Node<T> next = null;
 
+        while(pointer != null){
+            next = pointer.getNext();
+            pointer.setNext(previous);
+            previous = pointer;
+            pointer = next;
+        }
+        head = previous;
 
     }
 
+    //INCOMPLETE
     public void exclusiveOr(List<T> otherList){ //HAJAR
         if(size==1){
             this.clear();
