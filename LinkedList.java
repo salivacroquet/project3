@@ -204,6 +204,7 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
     //removeDuplicates
     //removes and duplicate elements in the list
     public void removeDuplicates() {
+        //CHECK IF SORTED
         //empty or null??
         Node<T> element = head;
         while (element != null) {
@@ -221,12 +222,13 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
     }
 
     public void reverse(){
+        //CHECK IF SORTED
 
 
     }
 
     public void exclusiveOr(List<T> otherList){
-
+        
     }
 
     public T getMin(){ //SYLVIA
