@@ -148,10 +148,31 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
 
     //SORT:
     //Sorts the elements from largest to smallest
-    public void sort() {//HAJAR
+    public void sort(){//HAJAR
+        Node<T> currNode = head;
+        Node<T> nextNode = null;
+        T temp= null;
 
+        if(size> 1){
+            while(currNode != null){
+                nextNode=currNode.getNext();
+                while(nextNode != null){
+                    T currData = currNode.getData();
+                    T nextData = nextNode.getData();
+                    if(currData.compareTo(nextData) > 0){
+                        temp= currData;
+                        currNode.setData(nextData);
+                        nextNode.setData(temp);
+                    }
+                    nextNode = nextNode.getNext();
+                }
+                currNode = currNode.getNext();
+            }
+        }
+
+        isSorted = true;
     }
-
+    
     //REMOVE
     //removes and element at at a given index
     public T remove(int index) { //SYLVIA
