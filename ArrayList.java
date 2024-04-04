@@ -12,40 +12,40 @@ public class ArrayList<T extends Comparable<T>> implements List<T> {
         this.isSorted = true;
 
     }
-///most of sylvia methods need editing
-
+    
     //ADD
     //adds a given element to the end of the array
     public boolean add(T element) { //SYLVIA
-        if(element == null)
+        if (element == null) {
             return false;
-        else{
-            if(size == array.length)
-                resize();
-
-            array[size++] = element;
-            checkSort(); //check if sorted
-            return true;
         }
+        else {
+            if (size == array.length) {
+                resize();
+            }
+        }
+        array[size++] = element;
+        checkSort();
+        return true;
     }
-    
     //ADD
     //adds given element to a specified index in array
     public boolean add(int index, T element) { //SYLVIA
         if (element == null) { //won't add null element to list
             return false;
         }
-        for (int i = 0; i > index; i++) { //shifts over elements after the added element
+        if (size == array.length) {
+            resize();
+        }
+        for (int i = 0; i > index; i--) { //shifts over elements after the added element
             array[i] = array[i -1];
         }
         array[index] = element; //assigns element to new index
         size++; //increment size
-        //CHECK IF SORTED
-        isSorted = false; //no longer sorted
+        checkSort();
         return true;
 
     }
-
 
     //CLEAR
     //clears the array
