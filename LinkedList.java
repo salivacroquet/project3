@@ -203,8 +203,7 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
 
     //removeDuplicates
     //removes and duplicate elements in the list
-    public void removeDuplicates() { //SYLVIA
-        //CHECK IF SORTED
+    public void removeDuplicates() {
         //empty or null??
         Node<T> element = head;
         while (element != null) {
@@ -221,14 +220,46 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
         }
     }
 
-    public void reverse(){
-        //CHECK IF SORTED
+    public void reverse(){//HAJAR
 
 
     }
 
-    public void exclusiveOr(List<T> otherList){
-        
+    public void exclusiveOr(List<T> otherList){ //HAJAR
+        if(size==1){
+            this.clear();
+        }
+        if(size >1){
+            LinkedList<T> other = (LinkedList<T>) otherList;
+            this.sort();
+            this.removeDuplicates();
+            other.sort();
+            other.removeDuplicates();
+
+            Node<T> currNode = head;
+            Node<T> nextNode = null;
+            boolean inList = false;
+
+            while(currNode != null){
+                nextNode=currNode.getNext();
+                while(nextNode != null){
+                    T currData = currNode.getData();
+                    T nextData = nextNode.getData();
+                    int index = this.indexOf(currData);
+                    int otherIndex = other.indexOf(currData);
+                    if(otherIndex == -1)
+                        add(other.get(otherIndex));
+
+                    if(currData.compareTo(nextData) == 0)
+                        remove(index);
+
+                    nextNode = nextNode.getNext();
+                }
+
+                currNode = currNode.getNext();
+            }
+            sort();
+        }
     }
 
     public T getMin(){ //SYLVIA
@@ -276,21 +307,6 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
     }
 
     public boolean isSorted () { //SYLVIA
-        //        if (head == null) {
-//            return false;
-//        }
-//        Node<T> check = head;
-//        while (check.getNext() != null) {
-//            T element = check.getData();
-//            T nextNode = check.getNext().getData();
-//            if (element.compareTo(nextNode) > 0) {
-//                return false;
-//            } else if (element.compareTo(nextNode) < 0) {
-//                check = check.getNext();
-//            }
-//        }
-//        return true;
-//    }
         return isSorted;
     }
 
