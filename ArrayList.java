@@ -177,8 +177,12 @@ public class ArrayList<T extends Comparable<T>> implements List<T> {
     }
 
     //RESIZE
+    //A helper function that copies and resizes the array
     public void resize(){ //HAJAR
-
+        T[] bigArray = (T[]) new Comparable[size*2];
+        for(int i=0;i<size;i++)
+            bigArray[i] = array[i];
+        this.array = bigArray;
     }
 
 }
