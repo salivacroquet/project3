@@ -18,6 +18,7 @@ public class ArrayList<T extends Comparable<T>> implements List<T> {
     //adds a given element to the end of the array
     public boolean add(T element) { //SYLVIA
         array[size++] = element;
+        //CHECK IF SORTED
         isSorted = false; //no longer sorted
         return true;
     }
@@ -32,6 +33,7 @@ public class ArrayList<T extends Comparable<T>> implements List<T> {
         }
         array[index] = element; //assigns element to new index
         size++; //increment size
+        //CHECK IF SORTED
         isSorted = false; //no longer sorted
         return true;
 
