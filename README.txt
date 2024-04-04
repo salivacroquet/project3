@@ -11,7 +11,6 @@ Sylvia:
     - removeDuplicates
     - getMin,getMax
     - toString
-    - isSorted
 - ArrayList Methods Completed By Sylvia:
     - add
     - get
@@ -21,7 +20,10 @@ Sylvia:
     - sort
     - exclusiceOr
     - remove
-    - removeDuplicates
+- Additional Helper Methods
+    - checkSort (in both Classes)
+
+Total: 15 Methods
 
 Hajar:
 - LinkedList Methods Completed by Hajar:
@@ -39,10 +41,11 @@ Hajar:
     - getmin
     - getmax
     - toString
+    - removeDuplicates
 - Additional Helper Methods
-    - checkSort (in both Classes)
     - resize (in ArrayList)
 
+Total: 15 Methods
 
 How to compile and run your program:
 
