@@ -51,7 +51,7 @@ public class ArrayList<T extends Comparable<T>> implements List<T> {
         //if index is out of bounds or element is null do NOT add the element to the array
         if (element == null || index<0 || index>=size) {
             return false;
-        }
+        }//Otherwise:
         if (size == array.length) {//if the array is full resize it
             resize();
         }
@@ -91,7 +91,7 @@ public class ArrayList<T extends Comparable<T>> implements List<T> {
     public int indexOf(T element) {
         if(size==0 || element==null){//if the list is empty or element is null
             return -1;
-        }//Otherwise loop through the list and check if element is in the list
+        }//Otherwise check if element is in the list
         int count =0;
         while(count>=0 && count<size){
             if (array[count].equals(element)) {
@@ -116,7 +116,7 @@ public class ArrayList<T extends Comparable<T>> implements List<T> {
 
     //size:
     //returns the size of the list
-    public int size() {//HAJAR
+    public int size() {
         if(added){//if something was added to the list
             size++; //increase size by 1
             added=false;//reset added to false
@@ -178,8 +178,7 @@ public class ArrayList<T extends Comparable<T>> implements List<T> {
             for(int j=size-1;j>i;j--){//starts at the end of the array
                 //if two distinct indices share the same element
                 if(array[i]==array[j]){
-                    //removes the similar element from the last part
-                    //of the array
+                    //removes the similar element from the last part of the array
                     remove(j);
                 }
             }
@@ -305,8 +304,7 @@ public class ArrayList<T extends Comparable<T>> implements List<T> {
     public void resize(){
         //make an array double the length of this.array
         T[] bigArray = (T[]) new Comparable[size*2];
-        //iterate through the list and copy the contents of this.array
-        //into the bigger array
+        //iterate through the list and copy the contents of this.array into the bigger array
         for(int i=0;i<size;i++)
             bigArray[i] = array[i];
 
