@@ -24,7 +24,9 @@ public class ArrayList<T extends Comparable<T>> implements List<T> {
                 resize();
             }
         }
-        array[size++] = element;
+
+        array[size] = element;
+        size++;
         checkSort();
         return true;
     }
@@ -72,7 +74,7 @@ public class ArrayList<T extends Comparable<T>> implements List<T> {
             return -1;
         }
 
-        for (int i = 0; i < size; i++) { //goes through each element until it finds one that matches input
+        for (int i = 0; i < this.size(); i++) { //goes through each element until it finds one that matches input
             if (array[i].compareTo(element) == 0) {
                 return i;
             }
@@ -114,7 +116,7 @@ public class ArrayList<T extends Comparable<T>> implements List<T> {
     }
 
     public T remove(int index) { //SYLVIA
-        if (index < 0 || index>= size) {
+        if (index < 0 || index >= size) {
             return null;
         }
 
@@ -152,48 +154,39 @@ public class ArrayList<T extends Comparable<T>> implements List<T> {
 
 
     public void exclusiveOr(List<T> otherList) { //SYLVIA
+        if(otherList == null)
+            return;
+
         ArrayList<T> other = (ArrayList<T>) otherList;
+        this.sort();
+        other.sort();
+        this.removeDuplicates();
+        other.removeDuplicates();
 
         if(this.size == 0){
             this.array = other.array;
-        }
-        if(other.size() > 0) {
-            this.sort();
-            other.sort();
-            this.removeDuplicates();
-            other.removeDuplicates();
+        } else {
+            ArrayList<T> temp = new ArrayList<T>();
+            temp.array = this.array;
+            temp.size = this.size;
 
-            //STEP 1: Remove all similar elements from both lists
-            System.out.println("this" +this);
-            System.out.println("other"+other);
+            temp.add(other);
 
-            for (int i = 0; i < this.size; ) {
-                int oldSize = this.size;
-                for (int j = 0; j < other.size; ) {
-                    if(this.array[i].compareTo(other.array[j]) ==0){
+            temp.sort();
+            temp.removeDuplicates();
 
-                        this.remove(i);
-                        other.remove(j);
-                        System.out.println(this.size+" "+this);
-                    } else{
-                        j++;
-                    }
-                }
-                if(oldSize==this.size){
-                    i++;
+            ArrayList<T> result = new ArrayList<T>();
+
+            for(int i = 0; i < temp.size(); i++){
+                if(this.indexOf(temp.array[i]) == -1
+                || other.indexOf(temp.array[i]) == -1){
+                    // add exclusive item
+                    result.add(temp.array[i]);
                 }
             }
-            System.out.println("this" +this);
-            System.out.println("other"+other);
 
-            //STEP 2: add elements in other to this
-            for(int j=0; j<other.size;j++){
-                this.add(other.array[j]);
-            }
-
-            sort();
-            System.out.println("this" +this);
-            System.out.println("------------------");
+            this.array = result.array;
+            this.size = result.size;
         }
     }
 
@@ -253,6 +246,12 @@ public class ArrayList<T extends Comparable<T>> implements List<T> {
                 if(array[i].compareTo(array[i+1]) >0)
                     isSorted=false;
             }
+        }
+    }
+
+    public void add(List<T> otherList){
+        for(int i = 0; i < otherList.size(); i++){
+            this.add(otherList.get(i));
         }
     }
 
