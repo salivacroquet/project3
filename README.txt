@@ -55,9 +55,9 @@ Any assumptions:
 
 Additional features that you implemented (if applicable):
 
-We implemented three helper functions. One helper function found in both Classes
+We implemented two helper functions. One helper function found in both Classes
 checks if the list is sorted (checkSort). The other helper function resizes the array if it
-becomes full (resize). The last adds an other list to this list (add).
+becomes full (resize).
 
 Any known bugs or defects in the program:
 INCOMPLETE
