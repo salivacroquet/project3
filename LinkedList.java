@@ -5,7 +5,7 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
 
     private Node <T> head; //The front of the linked list
     private boolean isSorted; //boolean that is true if the list is sorted in ascending order
-    private int size; // length of the list
+    private int size; // the number of items in the list
 
     //CONSTRUCTOR:
     //initializes the list to an empty list
@@ -18,44 +18,49 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
 
     //ADD:
     //adds an element to the end of the list
+    //return false if the element is invalid and therefore can not be added
+    //return true if the element is successfully added to the list
     public boolean add(T element){ //HAJAR
-        Node<T> currNode = head; //pointer
-        //CHECK IF SORTED
+        Node<T> currNode = head; //pointer used to traverse the list
 
-        //Return false and do not add to list if element is null
+        //if element is null return false and do not add it to the list
         if(element == null)
             return false;
-        else{ //Add it to the list
+        //Otherwise add it to the list
+        else{
             //Case 1: head is null
-            if(head == null)
+            if(head == null) //create new node
                 head = new Node<T>(element);
             //Case 2: head is NOT null
-            else{
+            else{ //loop through the linked list
                 while(currNode.getNext()!=null) //while the next node isn't null
                     currNode = currNode.getNext();//go to the next node
-                currNode.setNext(new Node<T>(element));
+                currNode.setNext(new Node<T>(element));//add the element at the end of the list
             }
-            size++; //increment size
-            checkSort();
-            return true;//INCOMPLETE
+            size++;
+            checkSort(); //check if the list is sorted using a helper function
+            return true;
         }
     }
 
     //ADD:
     //adds an element to a specific index in the list
+    //return false if the element is invalid and therefore can not be added
+    //return true if the element is successfully added to the list
     public boolean add(int index, T element){ //HAJAR
-        Node<T> currNode = head;
+        Node<T> currNode = head; //pointer used to traverse the list
         int currIndex = 0;
-        T oldData = null;
 
+        //if the element is null or the index is out of bounds do not add it ot the list
         if(element == null || index<0 || index>=size){
-            //if the element is null or the index is out of bounds do not add it ot the list
             return false;
-        }else{ //add it to the list
-            //Case 1: head is null
-            if(head == null) //The list is empty
+        }//Otherwise add it to the list
+        else{
+            //Case 1: The list is empty and the index is 0
+            if(head == null && index==0)
                 head = new Node<T>(element);
-            else if(index==0){ //head is not null and index=0
+            //Case 2: head is not null and the index is 0
+            else if(index==0){ //head is not null and index is 0
                 Node<T> newHead = new Node<T>(element);
                 newHead.setNext(head);
                 head = newHead;
@@ -63,7 +68,6 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
                 this.add(element);
                 size--;
             }else{//if the index is in the middle
-                oldData = currNode.getData();
                 while(currNode.getNext()!=null){
                     if(currIndex == index-1){ //if a Node points to the desired index
                         Node<T> nextNode= currNode.getNext();
@@ -208,19 +212,6 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
         checkSort();
     }
 
-    public void checkSort(){//SYLVIA
-        isSorted=true;
-        if(size>1){
-            Node<T> check = head;
-            while (check.getNext() != null) {
-                T element = check.getData();
-                T nextData = check.getNext().getData();
-                if (element.compareTo(nextData) > 0)
-                    isSorted=false;
-                check = check.getNext();
-            }
-        }
-    }
     //REVERSE
     //reverses the order of the linked list
     public void reverse(){//HAJAR
@@ -238,40 +229,50 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
         checkSort();
 
     }
-
-    //INCOMPLETE
+    
     public void exclusiveOr(List<T> otherList){ //HAJAR
-        if(size==1){
-            this.clear();
+        LinkedList<T> other = (LinkedList<T>) otherList;
+
+        if(this.size==0){
+            this.head= other.head;
         }
-        if(size >1){
-            LinkedList<T> other = (LinkedList<T>) otherList;
+        if(other.size() > 0){
             this.sort();
-            this.removeDuplicates();
             other.sort();
+            this.removeDuplicates();
             other.removeDuplicates();
 
-            Node<T> currNode = head;
-            Node<T> nextNode = null;
-            boolean inList = false;
+            Node<T> thisNode = head;
+            Node<T> otherNode = null;
 
-            while(currNode != null){
-                nextNode=currNode.getNext();
-                while(nextNode != null){
-                    T currData = currNode.getData();
-                    T nextData = nextNode.getData();
-                    int index = this.indexOf(currData);
-                    int otherIndex = other.indexOf(currData);
-                    if(otherIndex == -1)
-                        add(other.get(otherIndex));
+            //STEP 1: Add all the elements in the other list that are not in this list to this list
+            while(thisNode != null){
+                T thisData = thisNode.getData();
+                int thisIndex = indexOf(thisData);
 
-                    if(currData.compareTo(nextData) == 0)
-                        remove(index);
 
-                    nextNode = nextNode.getNext();
+                otherNode = other.head;
+                while(otherNode != null){
+                    T otherData = otherNode.getData();
+                    int otherIndex = other.indexOf(otherData);
+
+                    if(thisData.compareTo(otherData) == 0){
+                        other.remove(otherIndex);
+                        remove(thisIndex);
+
+                    }
+
+                    otherNode =otherNode.getNext();
                 }
+                thisNode = thisNode.getNext();
 
-                currNode = currNode.getNext();
+            }
+
+            //STEP 2: Remove the elements that are the same among this list and other list
+            otherNode = other.head;
+            while(otherNode != null){
+                add(otherNode.getData());
+                otherNode=otherNode.getNext();
             }
             sort();
         }
@@ -323,6 +324,22 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
 
     public boolean isSorted () { //SYLVIA
         return isSorted;
+    }
+
+    //CheckSort
+    //A helper function to check if the list is sorted
+    public void checkSort(){//SYLVIA
+        isSorted=true;
+        if(size>1){
+            Node<T> check = head;
+            while (check.getNext() != null) {
+                T element = check.getData();
+                T nextData = check.getNext().getData();
+                if (element.compareTo(nextData) > 0)
+                    isSorted=false;
+                check = check.getNext();
+            }
+        }
     }
 
 }
