@@ -9,32 +9,36 @@ METHODS:
 boolean add(T element)
   - LinkedList: 
     - Runtime: O(n)
+    -Explanation: To access the end of a linked list you need to iterated over the entire list, therefore the complexity is linear.
   - ArrayList:
     - Runtime: O(1)
+    -Explanation: Can access any index without iterating over the array, therefore the complexity is constant.
 
-  -Explanation:
+Conclusion: It is more efficient to use an array when you need to access the end of a list.
 
 T getMax()
 - LinkedList: 
     - Runtime: O(n)
+    -Explanation: If the list is not sorted you must iterate through the entire loop and compare the values to find the largest element, therefore the complexity is linear.
   - ArrayList:
     - Runtime: O(n)
-
-  -Explanation:
+    -Explanation: If the list is not sorted you must iterate through the entire loop and compare the values to find the largest element, therefore the complexity is linear.
 
 
 removeDuplicates()
 - LinkedList: 
     - Runtime: O(n^2)
+    -Explanation: Since each element in the list must be compared to all other elements, a nested loop is required, therefore the complexity is quadratic.
   - ArrayList:
     - Runtime: O(n^2)
+    -Explanation: Since each element in the list must be compared to all other elements, a nested loop is required, therefore the complexity is quadratic.
 
   -Explanation:
 
 reverse()
 - LinkedList: 
     - Runtime: O(n)
+    - Explantion: Since you need to traverse the linked list and make the pointers point to the opposite direction, which requires one loop, therefore it is linear.
   - ArrayList:
     - Runtime: O(n)
-
-  -Explanation:
+    -Explanation: Since you need to traverse the array to switch swap the elements to an index that shares the same distance from the center of the array, therefore it is linear.
