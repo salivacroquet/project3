@@ -209,7 +209,7 @@ public class ArrayList<T extends Comparable<T>> implements List<T> {
             return null;
         else if (isSorted) {
             return array[0];
-        else{
+        }else{
             T min=array[0];
             for(int i=0;i<size;i++){
                 if(min.compareTo(array[i]) > 0)
