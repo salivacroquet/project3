@@ -113,6 +113,9 @@ public class ArrayList<T extends Comparable<T>> implements List<T> {
     }
 
     public void sort() { //SYLVIA
+        if (isSorted) {
+            isSorted = true;
+        }
         for (int i = 0; i < size - 1; i++) {
             for (int j = i; j >= 0; j--) {
                 if (array[j].compareTo(array[j + 1]) > 0) {
@@ -204,6 +207,8 @@ public class ArrayList<T extends Comparable<T>> implements List<T> {
     public T getMin() { //HAJAR
         if(size==0)
             return null;
+        else if (isSorted) {
+            return array[0];
         else{
             T min=array[0];
             for(int i=0;i<size;i++){
@@ -217,6 +222,9 @@ public class ArrayList<T extends Comparable<T>> implements List<T> {
     public T getMax() { //HAJAR
         if(size==0)
             return null;
+        else if (isSorted) {
+            return array[size];
+        }
         else{
             T max=array[0];
             for(int i=0;i<size;i++){
