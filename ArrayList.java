@@ -106,10 +106,20 @@ public class ArrayList<T extends Comparable<T>> implements List<T> {
     }
 
     public T remove(int index) { //SYLVIA
-       
-        return null;
+        if (index < 0) {
+            return null;
+        }
+        else if (index >= size) {
+            return null;
+        }
+        T remElement = array[index];
+        for (int i = index; i < size -1; i++) {
+            array[i] = array[i+1];
+        }
+        size--;
+        checkSort();
+        return remElement;
     }
-
     public void removeDuplicates() { //HAJAR
         for(int i=0;i<size-1;i++){
             for(int j=0;j<size-1;j++){
