@@ -3,9 +3,13 @@
 public class ArrayList<T extends Comparable<T>> implements List<T> {
 
 
-    private T[] array;
-    private boolean isSorted;
-    private int size;
+    private T[] array; //an array containing the elements
+    private boolean isSorted; //boolean that is true if the list is sorted in ascending order
+    private int size; // the number of items in the list
+
+    boolean added; 
+
+    boolean removed;
     public ArrayList() {//SYLVIA
         this.size = 0;
         this.array = (T[]) new Comparable[2];
@@ -16,17 +20,20 @@ public class ArrayList<T extends Comparable<T>> implements List<T> {
     //ADD
     //adds a given element to the end of the array
     public boolean add(T element) { //SYLVIA
-        if (element == null) {
+        if (element == null) { //if the element is null do not add it
             return false;
         }
-        else {
+        else { //Otherwise add it to the array
+            //check if array is full, if so resize it
             if (size == array.length) {
                 resize();
             }
         }
 
+        added=true;
+        //add the element after the other items
         array[size] = element;
-        size++;
+        size=size(); //update size()
         checkSort();
         return true;
     }
@@ -42,8 +49,9 @@ public class ArrayList<T extends Comparable<T>> implements List<T> {
         for (int i = size-1; i >= index; i--) { //shifts over elements after the added element
             array[i+1] = array[i];
         }
+        added=true;
         array[index] = element; //assigns element to new index
-        size++; //increment size
+        size=size(); //increment size
         checkSort();
         return true;
 
@@ -93,12 +101,14 @@ public class ArrayList<T extends Comparable<T>> implements List<T> {
     }
 
     public int size() {//HAJAR
-        size=0;
-        for(int i=0; i<array.length; i++){
-            if(array[i] != null){
-                size++;
-            }
+        if(added){
+            size++;
+            added=false;
+        }if(removed){
+            size--;
+            removed=false;
         }
+        
         return size;
     }
 
@@ -124,8 +134,9 @@ public class ArrayList<T extends Comparable<T>> implements List<T> {
         for (int i = index; i < size-1; i++) {
             array[i] = array[i+1];
         }
+        removed =true;
         array[size-1]=null;
-        size--;
+        size=size();
         checkSort();
         return removedElement;
     }
@@ -253,6 +264,7 @@ public class ArrayList<T extends Comparable<T>> implements List<T> {
         for(int i = 0; i < otherList.size(); i++){
             this.add(otherList.get(i));
         }
+        size = size();
     }
 
 }
