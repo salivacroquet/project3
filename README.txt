@@ -48,21 +48,20 @@ Hajar:
 Total: 15 Methods
 
 How to compile and run your program:
-INCOMPLETE
-The program can be run through inteliJ. 
+The program can compile and run in the terminal or through inteliJ. 
 
 Any assumptions:
-INCOMPLETE
+
 
 Additional features that you implemented (if applicable):
 
-We implemented two helper functions. One helper function found in both Classes
+We implemented three helper functions. One helper function found in both Classes
 checks if the list is sorted (checkSort). The other helper function resizes the array if it
-becomes full (resize).
+becomes full (resize). The last adds an other list to this list (add).
 
 Any known bugs or defects in the program:
 INCOMPLETE
-- ArrayList InclusiveOr
+- ArrayList ExclusiveOr
 
 Any outside sources (aside from course resources) consulted for ideas used in the project, in
 the format:
@@ -78,3 +77,4 @@ file is complete and accurate. I have both read and followed the course policies
 in the ‘Academic Integrity - Course Policy’ section of the course syllabus.
 
 - Hajar Ahmed
+-Sylvia Croatt
