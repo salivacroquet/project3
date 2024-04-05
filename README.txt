@@ -48,22 +48,32 @@ Hajar:
 Total: 15 Methods
 
 How to compile and run your program:
-
+INCOMPLETE
+The program can be run through inteliJ. 
 
 Any assumptions:
-
+INCOMPLETE
 
 Additional features that you implemented (if applicable):
 
 We implemented two helper functions. One helper function found in both Classes
-checks if the list is sorted. The other helper function resizes the array if it
-becomes full.
+checks if the list is sorted (checkSort). The other helper function resizes the array if it
+becomes full (resize).
 
 Any known bugs or defects in the program:
-
+INCOMPLETE
 
 Any outside sources (aside from course resources) consulted for ideas used in the project, in
 the format:
-– idea1: source
-– idea2: source
-– idea3: source
+– idea1: reverse a linked list
+    - https://www.baeldung.com/java-reverse-linked-list
+
+– idea2: Bubble Sort a linked list
+        - https://www.prepbytes.com/blog/linked-list/bubble-sort-for-linked-list-by-swapping-nodes/
+
+
+I certify that the information contained in this README
+file is complete and accurate. I have both read and followed the course policies
+in the ‘Academic Integrity - Course Policy’ section of the course syllabus.
+
+- Hajar Ahmed
