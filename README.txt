@@ -51,6 +51,7 @@ How to compile and run your program:
 The program can compile and run in the terminal or through inteliJ. 
 
 Any assumptions:
+None that we know of.
 
 
 Additional features that you implemented (if applicable):
