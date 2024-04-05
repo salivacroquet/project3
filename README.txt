@@ -62,6 +62,7 @@ becomes full (resize).
 
 Any known bugs or defects in the program:
 INCOMPLETE
+- ArrayList InclusiveOr
 
 Any outside sources (aside from course resources) consulted for ideas used in the project, in
 the format:
