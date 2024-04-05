@@ -119,9 +119,10 @@ public class ArrayList<T extends Comparable<T>> implements List<T> {
         }
 
         T removedElement = array[index];
-        for (int i = index; i < size; i++) {
+        for (int i = index; i < size-1; i++) {
             array[i] = array[i+1];
         }
+        array[size-1]=null;
         size--;
         checkSort();
         return removedElement;
@@ -135,7 +136,6 @@ public class ArrayList<T extends Comparable<T>> implements List<T> {
                 }
             }
         }
-        checkSort();
     }
 
     public void reverse() { //HAJAR
@@ -164,14 +164,27 @@ public class ArrayList<T extends Comparable<T>> implements List<T> {
             other.removeDuplicates();
 
             //STEP 1: Remove all similar elements from both lists
-            for (int i = 0; i < this.size; i++) {
-                for (int j = 0; j < other.size; j++) {
+            System.out.println("this" +this);
+            System.out.println("other"+other);
+
+            for (int i = 0; i < this.size; ) {
+                int oldSize = this.size;
+                for (int j = 0; j < other.size; ) {
                     if(this.array[i].compareTo(other.array[j]) ==0){
+
                         this.remove(i);
                         other.remove(j);
+                        System.out.println(this.size+" "+this);
+                    } else{
+                        j++;
                     }
                 }
+                if(oldSize==this.size){
+                    i++;
+                }
             }
+            System.out.println("this" +this);
+            System.out.println("other"+other);
 
             //STEP 2: add elements in other to this
             for(int j=0; j<other.size;j++){
@@ -179,6 +192,8 @@ public class ArrayList<T extends Comparable<T>> implements List<T> {
             }
 
             sort();
+            System.out.println("this" +this);
+            System.out.println("------------------");
         }
     }
 
