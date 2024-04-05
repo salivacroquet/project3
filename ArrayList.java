@@ -7,19 +7,24 @@ public class ArrayList<T extends Comparable<T>> implements List<T> {
     private boolean isSorted; //boolean that is true if the list is sorted in ascending order
     private int size; // the number of items in the list
 
-    boolean added; 
+    boolean added; //boolean that is true if something is added to the list
 
-    boolean removed;
-    public ArrayList() {//SYLVIA
+    boolean removed; //boolean that is true if something is removed from the list
+
+    //constructor:
+    //initialized the list to an empty array where the length of the array is 2
+    public ArrayList() {
         this.size = 0;
         this.array = (T[]) new Comparable[2];
         this.isSorted = true;
 
     }
 
-    //ADD
-    //adds a given element to the end of the array
-    public boolean add(T element) { //SYLVIA
+    //add:
+    //adds an element to the end of the list
+    //return false if the element is invalid and therefore can not be added
+    //return true if the element is successfully added to the list
+    public boolean add(T element) {
         if (element == null) { //if the element is null do not add it
             return false;
         }
@@ -33,92 +38,106 @@ public class ArrayList<T extends Comparable<T>> implements List<T> {
         added=true;
         //add the element after the other items
         array[size] = element;
-        size=size(); //update size()
-        checkSort();
+        size=size(); //update size
+        checkSort(); //check if array is sorted
         return true;
     }
-    //ADD
-    //adds given element to a specified index in array
-    public boolean add(int index, T element) { //SYLVIA
-        if (element == null || index<0 || index>=size) { //won't add null element to list
+
+    //add:
+    //adds an element to a specific index in the list
+    //return false if the element is invalid and therefore can not be added
+    //return true if the element is successfully added to the list
+    public boolean add(int index, T element) {
+        //if index is out of bounds or element is null do NOT add the element to the array
+        if (element == null || index<0 || index>=size) {
             return false;
         }
-        if (size == array.length) {
+        if (size == array.length) {//if the array is full resize it
             resize();
         }
-        for (int i = size-1; i >= index; i--) { //shifts over elements after the added element
+
+        //shifts over elements after the added element
+        for (int i = size-1; i >= index; i--) {
             array[i+1] = array[i];
         }
         added=true;
         array[index] = element; //assigns element to new index
-        size=size(); //increment size
-        checkSort();
+        size=size(); //update size
+        checkSort(); //check if array is sorted
         return true;
 
     }
 
-    //CLEAR
-    //clears the array
-    public void clear() { //SYLVIA
+    //clear:
+    //empty the list
+    public void clear() {
         this.array = (T[]) new Comparable[2];
-        size = 0; //adjust size
-        isSorted = true; //is sorted because empty
+        size = 0;
+        isSorted = true;
     }
 
-    //GET
-    //gives the element at a given index of the array
-    public T get(int index) { //SYLVIA
-        //System.out.println(index);
-        if(index>=0 && index< size){
+    //get:
+    //get an element at a given index
+    public T get(int index) {
+        if(index>=0 && index< size){//if the index is within bounds
             return array[index]; //returns the element at given index
-        }
+        }//otherwise index is out of bounds so return null
         return null;
     }
 
-    //indexOf
-    //gives the index of a given element
-    public int indexOf(T element) { //SYLVIA
-        if(size==0 || element==null){
+    //indexOf:
+    //get the index of a certain element,
+    // if the element is not in the list or null return -1
+    public int indexOf(T element) {
+        if(size==0 || element==null){//if the list is empty or element is null
             return -1;
+        }//Otherwise loop through the list and check if element is in the list
+        int count =0;
+        while(count>=0 && count<size){
+            if (array[count].equals(element)) {
+                //return the index of the element in the list that matches the given element
+                return count;
+            }
+            count++;
         }
 
-        for (int i = 0; i < this.size(); i++) { //goes through each element until it finds one that matches input
-            if (array[i].compareTo(element) == 0) {
-                return i;
-            }
-        }
         return -1;
     }
 
-    //isEmpty
-    //checks if the array is empty
-    public boolean isEmpty() { //SYLVIA
-        if (size == 0)
+    //isEmpty:
+    //returns true if the list is empty
+    public boolean isEmpty() {
+        if (size == 0) //the list is empty
             return true;
-        else{
+        else{//otherwise the list is not empty
             return false;
         }
     }
 
+    //size:
+    //returns the size of the list
     public int size() {//HAJAR
-        if(added){
-            size++;
-            added=false;
-        }if(removed){
-            size--;
-            removed=false;
+        if(added){//if something was added to the list
+            size++; //increase size by 1
+            added=false;//reset added to false
+        }if(removed){ //if something was removed from the list
+            size--;//decrease size by 1
+            removed=false;//reset removed to false
         }
-        
+
         return size;
     }
 
-    public void sort() { //SYLVIA
-        if (isSorted) {
-            isSorted = true;
-        }
+    //sort:
+    //Sorts the elements from smallest to largest using Bubble sort
+    public void sort() {
+        //loop through each element and compare it with the other
+        //elements in the list
         for (int i = 0; i < size - 1; i++) {
             for (int j = i; j >= 0; j--) {
+                //if the previous element is bigger than the next element
                 if (array[j].compareTo(array[j + 1]) > 0) {
+                    //swap the elements
                     T temp = array[j];
                     array[j] = array[j + 1];
                     array[j + 1 ] = temp;
@@ -128,37 +147,57 @@ public class ArrayList<T extends Comparable<T>> implements List<T> {
         isSorted=true;
     }
 
-    public T remove(int index) { //SYLVIA
-        if (index < 0 || index >= size) {
-            return null;
+    //remove:
+    //removes the element at the given index and returns that element
+    public T remove(int index) {
+        if (index < 0 || index >= size) { //if index is out of bounds
+            return null; //nothing is removed
         }
-
+        //Otherwise we remove an element
         T removedElement = array[index];
+        //shift all the elements after the removed element one to the left
         for (int i = index; i < size-1; i++) {
             array[i] = array[i+1];
         }
+
         removed =true;
+        //remove the last non-null element
+        // (it was already shifted to the left by one so get rid of the duplicate)
         array[size-1]=null;
-        size=size();
-        checkSort();
+        size=size(); //update size
+        checkSort(); //check if it is sorted
         return removedElement;
     }
 
-    public void removeDuplicates() { //HAJAR
-        for(int i=0;i<size;i++){
-            for(int j=size-1;j>i;j--){
-                if(i != j && array[i]==array[j]){
+    //removeDuplicates
+    //removes any duplicate elements in the list
+    public void removeDuplicates() {
+        //loop through each element and compare it with the other
+        //elements in the list
+        for(int i=0;i<size;i++){//starts at the beginning of the array
+            for(int j=size-1;j>i;j--){//starts at the end of the array
+                //if two distinct indices share the same element
+                if(array[i]==array[j]){
+                    //removes the similar element from the last part
+                    //of the array
                     remove(j);
                 }
             }
         }
+
+        checkSort();
     }
 
-    public void reverse() { //HAJAR
-        if(size > 1){
+    //reverse:
+    //reverses the order of the array
+    public void reverse() {
+        if(size > 1){//if the list has at least two elements
             T temp = null;
-            for(int i=0; i<size/2;i++){
-                temp = array[i];
+
+            for(int i=0; i<size/2;i++){//loop through half of the list
+                temp = array[i]; //make temp the current value
+                //swap the current element to the element symmetric to it in the list
+                //meaning that they both share the same distance from the center of the list
                 array[i] = array[size-i-1];
                 array[size-i-1] = temp;
             }
@@ -166,113 +205,130 @@ public class ArrayList<T extends Comparable<T>> implements List<T> {
         checkSort();
     }
 
-
-    public void exclusiveOr(List<T> otherList) { //SYLVIA
-        if(otherList == null)
+    //exclusiveOr:
+    //updates this list to contain only the elements in this list or other list but NOT in both
+    public void exclusiveOr(List<T> otherList) {
+        if(otherList == null) //if the other list is empty do nothing
             return;
 
         ArrayList<T> other = (ArrayList<T>) otherList;
-        this.sort();
+        sort();
+        removeDuplicates();
         other.sort();
-        this.removeDuplicates();
         other.removeDuplicates();
 
-        if(this.size == 0){
+        if(this.size == 0){//if this is empty make the other list this
             this.array = other.array;
         } else {
-            ArrayList<T> temp = new ArrayList<T>();
-            temp.array = this.array;
-            temp.size = this.size;
 
-            temp.add(other);
+            //Step 1: remove everything in this that is in other
+            boolean isremoved = false; //true if something is removed
 
-            temp.sort();
-            temp.removeDuplicates();
+            for(int i=0;i<size;){
 
-            ArrayList<T> result = new ArrayList<T>();
-
-            for(int i = 0; i < temp.size(); i++){
-                if(this.indexOf(temp.array[i]) == -1
-                || other.indexOf(temp.array[i]) == -1){
-                    // add exclusive item
-                    result.add(temp.array[i]);
+                if(other.indexOf(array[i]) != -1) {//if array[i] is in other
+                    T removedData= array[i];
+                    int otherIndex= other.indexOf(removedData);
+                    //remove that element in this and other
+                    other.remove(otherIndex);
+                    remove(i);
+                    isremoved=true;
+                    //Don't increment
+                }else{//increment
+                    i++;
                 }
             }
 
-            this.array = result.array;
-            this.size = result.size;
+            //Step2: combine the two lists
+            for(int i = 0; i < otherList.size(); i++){
+                //add each component of the other list to this list
+                this.add(otherList.get(i));
+            }
+            sort();
         }
     }
 
-    public T getMin() { //HAJAR
-        if(size==0)
-            return null;
-        else if (isSorted) {
-            return array[0];
-        }else{
+    //getMin:
+    //returns the smallest element in the list
+    public T getMin() {
+        if(size==0)//if the list is empty
+            return null; //there is no minimum
+        else{//Otherwise find the minimum
             T min=array[0];
+            //loop through the list
             for(int i=0;i<size;i++){
+                //if the minimum is bigger than the current element
                 if(min.compareTo(array[i]) > 0)
-                    min = array[i];
+                    min = array[i];//the new minimum is that element
             }
             return min;
         }
     }
 
-    public T getMax() { //HAJAR
-        if(size==0)
-            return null;
-        else if (isSorted) {
-            return array[size];
-        }
-        else{
+    //getMax:
+    //returns the largest element in the list
+    public T getMax() {
+        if(size==0) //if the list is empty
+            return null; //there is no maximum
+        else{//Otherwise find the maximum
             T max=array[0];
+            //iterate through the list
             for(int i=0;i<size;i++){
+                //if the maximum is smaller than the current element
                 if(max.compareTo(array[i]) < 0)
-                    max = array[i];
+                    max = array[i]; //the new maximum is that element
             }
             return max;
         }
     }
 
+    //toString:
+    //returns a string representation of the list
     public String toString() {//HAJAR
         String strArray="";
         for(int i=0; i<size;i++){
+            //add the data of index to the string list if it is not null
             strArray= strArray + array[i] +" ,";
         }
         return strArray;
     }
 
+    //isSorted:
+    //returns true if the list is sorted
     public boolean isSorted() {
         return isSorted;
     }
 
-    //RESIZE
-    //A helper function that copies and resizes the array
-    public void resize(){ //HAJAR
+    //resize
+    //A helper function that copies the contents of this.array
+    //into a new array with length array.length*2
+    public void resize(){
+        //make an array double the length of this.array
         T[] bigArray = (T[]) new Comparable[size*2];
+        //iterate through the list and copy the contents of this.array
+        //into the bigger array
         for(int i=0;i<size;i++)
             bigArray[i] = array[i];
+
         this.array = bigArray;
     }
 
-    //CheckSort
-    //checks if the array is sorted
+    //checkSort:
+    //A helper function to check if the list is sorted
     public void checkSort(){
         isSorted = true;
-        if(size>1){
+        if(size>1){//if the list has at least two items
+            //iterate through the list
             for(int i=0; i<size-1;i++){
+                //if the next element is smaller than the current element
+                //it is NOT sorted
                 if(array[i].compareTo(array[i+1]) >0)
                     isSorted=false;
             }
         }
     }
 
-    public void add(List<T> otherList){
-        for(int i = 0; i < otherList.size(); i++){
-            this.add(otherList.get(i));
-        }
-        size = size();
-    }
+
+
 
 }
