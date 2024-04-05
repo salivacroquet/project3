@@ -1,8 +1,7 @@
 //Created by Sylvia Croatt, croat038 and Hajar Ahmed, ahme0635
 
 public class LinkedList<T extends Comparable<T>> implements List<T> {
-    //ONLY NEED TO DEBUG TO MAKE SURE exclusiveOrTest Passes
-
+    
     private Node <T> head; //The front of the linked list
     private boolean isSorted; //boolean that is true if the list is sorted in ascending order
     private int size; // the number of items in the list
