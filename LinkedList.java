@@ -9,7 +9,7 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
 
     //constructor:
     //initializes the list to an empty list
-    public LinkedList() { //SYLVIA
+    public LinkedList() {
         this.head = null;
         this.isSorted = true;
         this.size = 0;
@@ -20,7 +20,7 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
     //adds an element to the end of the list
     //return false if the element is invalid and therefore can not be added
     //return true if the element is successfully added to the list
-    public boolean add(T element){ //HAJAR
+    public boolean add(T element){
         Node<T> currNode = head; //pointer used to traverse the list
 
         //if element is null return false and do not add it to the list
@@ -49,7 +49,7 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
     //adds an element to a specific index in the list
     //return false if the element is invalid and therefore can not be added
     //return true if the element is successfully added to the list
-    public boolean add(int index, T element){ //HAJAR
+    public boolean add(int index, T element){
         Node<T> currNode = head; //pointer used to traverse the list
         int currIndex = 0; //keeps track of the current index
 
@@ -89,7 +89,7 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
 
     //clear:
     //empty the list
-    public void clear(){ //HAJAR
+    public void clear(){
         head = null;
         isSorted = true;
         size=0;
@@ -98,7 +98,7 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
 
     //get:
     //get an element at a given index
-    public T get(int index){ //HAJAR
+    public T get(int index){
         int currIndex=0; //keeps track of the current index
         Node<T> currNode = head; //pointer
         if (head != null) { //if not empty
@@ -115,7 +115,7 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
 
     //indexOf:
     //get the index of a certain element
-    public int indexOf(T element){ //HAJAR
+    public int indexOf(T element){
         int currIndex=0; //keeps track of the current index
         Node<T> currNode = head; //pointer
         if (head != null) { //if the list is not empty
@@ -132,7 +132,7 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
 
     //isEmpty:
     //returns true if the list is empty
-    public boolean isEmpty(){ //HAJAR
+    public boolean isEmpty(){
         if(size == 0) //if no items in the list it is empty
             return true;
         else //Otherwise there is something in it
@@ -147,7 +147,7 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
 
     //sort:
     //Sorts the elements from largest to smallest using Bubble sort
-    public void sort(){//HAJAR
+    public void sort(){
         Node<T> currNode = head; //represents the current node
         Node<T> nextNode = null; //points to the node after current node
         T temp= null; //temporary node used to hold a node
@@ -177,7 +177,7 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
 
     //remove:
     //removes the element at the given index and returns that element
-    public T remove(int index) { //SYLVIA
+    public T remove(int index) { 
         if (index < 0 || head == null || index >= size) {
             //if index out of bounds or list is empty return null
             return null;
@@ -223,7 +223,7 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
 
     //reverse:
     //reverses the order of the linked list by making everything point in reverse order
-    public void reverse(){//HAJAR
+    public void reverse(){
         Node<T> previous = null; //previous node
         Node<T> pointer = head; //current node
         Node<T> next = null; //next node
@@ -242,7 +242,7 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
 
     //exclusiveOr:
     //updates this list to contain only the elements in this list or other list but NOT in both
-    public void exclusiveOr(List<T> otherList){ //HAJAR
+    public void exclusiveOr(List<T> otherList){
         LinkedList<T> other = (LinkedList<T>) otherList;
 
         if(this.size==0){//if this list is empty
@@ -295,7 +295,7 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
 
     //getMin:
     //returns the smallest element in the list
-    public T getMin(){ //SYLVIA
+    public T getMin(){ 
         if(size==0){//if the list is empty, min is null
             return null;
         }else{
@@ -317,7 +317,7 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
 
     //getMax:
     //returns the largest element in the list
-    public T getMax(){ //SYLVIA
+    public T getMax(){ 
         if(size == 0){//if the list is empty min is null
             return null;
         }else{
@@ -338,7 +338,7 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
 
     //toString:
     //returns a string representation of the list
-    public String toString () { //SYLVIA
+    public String toString () { 
         StringBuilder strList = new StringBuilder();
         Node<T> element = head; //pointer
         while (element != null) { //loop through the list
@@ -351,13 +351,13 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
 
     //isSorted:
     //returns true if the list is sorted
-    public boolean isSorted () { //SYLVIA
+    public boolean isSorted () { 
         return isSorted;
     }
 
     //checkSort:
     //A helper function to check if the list is sorted
-    public void checkSort(){//SYLVIA
+    public void checkSort(){
         isSorted=true;
 
         //if the list has at least two items
