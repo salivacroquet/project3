@@ -34,8 +34,7 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
                 head = new Node<T>(element);
                 tail = head;
                 //Case 2: head is NOT null
-            }else{
-                //loop through the linked list to get to the end
+            }else{//Otherwise
                 while(currNode.getNext()!=null)
                     currNode = currNode.getNext();
                 //add the element at the end of the list
@@ -82,7 +81,7 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
                         currNode = currNode.getNext();
                         currNode.setNext(nextNode); //make the new node point to the next node
                     }
-                    currNode = currNode.getNext();//go to the next node
+                    currNode = currNode.getNext();
                     currIndex++;
                 }
             }
@@ -107,7 +106,7 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
         int currIndex=0; //keeps track of the current index
         Node<T> currNode = head; //pointer
         if (head != null) { //if not empty
-            while(currNode !=null){ //loop through the list
+            while(currNode !=null){
                 if(currIndex == index) //once we get to the index return its element
                     return currNode.getData();
                 currNode = currNode.getNext();
@@ -124,7 +123,7 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
         int currIndex=0; //keeps track of the current index
         Node<T> currNode = head; //pointer
         if (head != null) { //if the list is not empty
-            while(currNode !=null){ //loop through the list
+            while(currNode !=null){ 
                 if(currNode.getData() == element) //once we find the element return its index
                     return currIndex;
                 currNode = currNode.getNext();
@@ -153,15 +152,15 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
     //sort:
     //Sorts the elements from smallest to largest using Bubble sort
     public void sort(){
-        if(isSorted){
+        if(isSorted){//if its already sorted do not sort
             isSorted=true;
-        }else{
+        }else{//Sort
             Node<T> currNode = head; //represents the current node
             Node<T> nextNode = null; //points to the node after current node
             T temp= null; //temporary node used to hold a node
 
             if(size> 1){//if there is at least two items in the list
-                while(currNode != null){ //loop through the list
+                while(currNode != null){
                     nextNode=currNode.getNext();
 
                     //compare the current node with the nodes after it
@@ -201,8 +200,8 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
                     nextNode = nextNode.getNext();
                 }
                 if (nextNode.getNext() != null) { //makes sure that the next node isn't null
-                    dataRemoved = nextNode.getNext().getData();
-                    nextNode.setNext(nextNode.getNext().getNext());
+                    dataRemoved = nextNode.getNext().getData();//get next data
+                    nextNode.setNext(nextNode.getNext().getNext()); //make the next node point to the node after it
                 }
             }
             size--;
@@ -219,7 +218,7 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
             Node<T> check = element;
             while (check.getNext() != null) { //compares element to all other elements in list
                 if (element.getData().equals(check.getNext().getData())) { //if they equal each other, remove
-                    check.setNext(check.getNext().getNext());
+                    check.setNext(check.getNext().getNext()); //make the check node point to the node after it
                     size--;
                 } else {//otherwise (they are not equal) continue traversing the list
                     check = check.getNext();
@@ -270,14 +269,16 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
 
             //STEP 1: Remove all the similar element from this list and other list
             while(thisNode != null){
+                //get data and index of this node
                 T thisData = thisNode.getData();
                 int thisIndex = indexOf(thisData);
 
-
+                
                 otherNode = other.head; //go to the beginning of other list
                 while(otherNode != null){
-                    T otherData = otherNode.getData(); //get Data
-                    int otherIndex = other.indexOf(otherData); //find Index
+                    //get data and index of other node
+                    T otherData = otherNode.getData();
+                    int otherIndex = other.indexOf(otherData);
 
                     //if otherData is the same as thisData remove it from both list
                     if(thisData.compareTo(otherData) == 0){
@@ -307,13 +308,13 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
     public T getMin(){
         if(size==0){//if the list is empty, min is null
             return null;
-        }else{
+        }else{//find minimum
             T min = head.getData(); //minimum element
-            if(isSorted) {
+            if(isSorted) {//if it is sorted min is first element
                 min = head.getData();
                 return min;
             }
-            else{
+            else{//Otherwise, if it is not sorted
                 Node<T> element = head;
                 while(element.getNext() != null){
                     //get data of next element
@@ -334,11 +335,11 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
     public T getMax(){
         if(size == 0){//if the list is empty min is null
             return null;
-        }else{
+        }else{//find maximum
             T max = head.getData(); //max element
-            if(isSorted){
+            if(isSorted){//if sorted max is the tail
                 max =tail.getData();
-            }else{
+            }else{//Otherwise, if it is not Sorted
                 Node<T> element = head;
                 while(element.getNext() != null){
                     //get data of next element
