@@ -124,7 +124,8 @@ public class ArrayList<T extends Comparable<T>> implements List<T> {
         for(int i=0;i<size-1;i++){
             for(int j=0;j<size-1;j++){
                 if(i != j && array[i]==array[j]){
-                    remove(i);
+                    remove(j);
+                    j++;
                 }
             }
         }
