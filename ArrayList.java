@@ -31,14 +31,14 @@ public class ArrayList<T extends Comparable<T>> implements List<T> {
     //ADD
     //adds given element to a specified index in array
     public boolean add(int index, T element) { //SYLVIA
-        if (element == null) { //won't add null element to list
+        if (element == null || index<0 || index>=size) { //won't add null element to list
             return false;
         }
         if (size == array.length) {
             resize();
         }
-        for (int i = 0; i > index; i--) { //shifts over elements after the added element
-            array[i] = array[i -1];
+        for (int i = size-1; i >= index; i--) { //shifts over elements after the added element
+            array[i+1] = array[i];
         }
         array[index] = element; //assigns element to new index
         size++; //increment size
