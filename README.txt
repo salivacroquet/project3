@@ -18,7 +18,7 @@ Sylvia:
     - indexOf
     - isEmpty
     - sort
-    - exclusiceOr
+    - exclusiveOr
     - remove
 - Additional Helper Methods
     - checkSort (in both Classes)
